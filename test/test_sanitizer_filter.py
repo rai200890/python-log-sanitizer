@@ -25,7 +25,10 @@ def record(mocker):
                 "other": "123"
             }
         },
-        autospec=["asctime", "filename", "funcName", "lineno", "levelname", "getMessage", "request"])
+        autospec=[
+            "asctime", "filename", "funcName", "lineno", "levelname",
+            "getMessage", "request"
+        ])
 
 
 def test_filter(sanitizer_filter, record):
@@ -37,4 +40,10 @@ def test_filter(sanitizer_filter, record):
     assert record.levelname == "WARNING"
     assert record.getMessage() == "farofa"
     assert record.cpf_cnpj == "[*]"
-    assert record.request == {"cpf_cnpj": "[*]", "random": {"user_cpf_cnpj": "[*]", "other": "123"}}
+    assert record.request == {
+        "cpf_cnpj": "[*]",
+        "random": {
+            "user_cpf_cnpj": "[*]",
+            "other": "123"
+        }
+    }

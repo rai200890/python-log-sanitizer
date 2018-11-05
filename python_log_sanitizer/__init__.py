@@ -14,7 +14,10 @@ class SanitizerFilter(Filter):
 
     def _sanitize(self, field, data):
         if isinstance(data, dict):
-            return {key: self._sanitize(key, value) for key, value in data.items()}
+            return {
+                key: self._sanitize(key, value)
+                for key, value in data.items()
+            }
         if isinstance(data, list):
             return [self._sanitize(field, item) for item in data]
         return self._sanitize_value(field, data)
@@ -23,4 +26,5 @@ class SanitizerFilter(Filter):
         return self.placeholder if self.matches_any_pattern(field) else value
 
     def matches_any_pattern(self, key):
-        return any(re.compile(pattern).search(key) for pattern in self.patterns)
+        return any(
+            re.compile(pattern).search(key) for pattern in self.patterns)

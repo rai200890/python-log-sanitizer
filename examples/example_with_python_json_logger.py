@@ -1,3 +1,8 @@
+import logging
+
+from logging import config
+
+
 LOG_CONFIG = {
     "version": 1,
     "formatters": {
@@ -8,7 +13,7 @@ LOG_CONFIG = {
     },
     "filters": {
         "sanitizer": {
-            "()" : "python_log_sanitizer.SanitizerFilter",
+            "()": "python_log_sanitizer.SanitizerFilter",
             "patterns": ["extra"],
             "placeholder": "*"
         }
@@ -27,13 +32,9 @@ LOG_CONFIG = {
         }
     }
 }
-import logging
+config.dictConfig(LOG_CONFIG)  # load log config from dict
 
-from logging import config
+logger = logging.getLogger("root")  # get root logger instance
 
-config.dictConfig(LOG_CONFIG) # load log config from dict
-
-logger = logging.getLogger("root") # get root logger instance
-
-
-logger.info("farofa", extra={"extra": "farofa"}) # log message with extra arguments  
+logger.info(
+    "farofa", extra={"extra": "farofa"})  # log message with extra arguments
