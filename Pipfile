@@ -17,4 +17,4 @@ safety = "~=1.8.4"
 python-json-logger = "~= 0.1.9"
 
 [requires]
-python_version = "3.6"
+python_version = "3.7"
