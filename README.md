@@ -3,6 +3,7 @@
 [![CircleCI](https://circleci.com/gh/rai200890/python-log-sanitizer.svg?style=svg&circle-token=da7071836f491385a780fb92fc015ebdd1da8569)](https://circleci.com/gh/rai200890/python-log-sanitizer)
 [![PyPI version](https://badge.fury.io/py/python-log-sanitizer.svg)](https://badge.fury.io/py/python-log-sanitizer)
 [![Maintainability](https://api.codeclimate.com/v1/badges/07aeb29594b05405ddd5/maintainability)](https://codeclimate.com/github/rai200890/python-log-sanitizer/maintainability)
+[![Test Coverage](https://api.codeclimate.com/v1/badges/07aeb29594b05405ddd5/test_coverage)](https://codeclimate.com/github/rai200890/python-log-sanitizer/test_coverage)
 
 Python log sanitizer
 
