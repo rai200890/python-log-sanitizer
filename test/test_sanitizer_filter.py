@@ -20,15 +20,32 @@ def record(mocker):
         cpf_cnpj="124603771",
         request={
             "cpf_cnpj": "124603771",
-            "random": {
-                "user_cpf_cnpj": "123456789",
-                "other": "123"
-            }
+            "random": {"user_cpf_cnpj": "123456789", "other": "123"},
         },
         autospec=[
-            "asctime", "filename", "funcName", "lineno", "levelname",
-            "getMessage", "request"
-        ])
+            "args",
+            "created",
+            "exc_info",
+            "exc_text",
+            "filename",
+            "funcName",
+            "getMessage",
+            "levelname",
+            "levelno",
+            "lineno",
+            "module",
+            "msecs",
+            "msg",
+            "name",
+            "pathname",
+            "process",
+            "processName",
+            "relativeCreated",
+            "stack_info",
+            "thread",
+            "threadName",
+        ],
+    )
 
 
 def test_filter(sanitizer_filter, record):
@@ -42,8 +59,18 @@ def test_filter(sanitizer_filter, record):
     assert record.cpf_cnpj == "[*]"
     assert record.request == {
         "cpf_cnpj": "[*]",
-        "random": {
-            "user_cpf_cnpj": "[*]",
-            "other": "123"
-        }
+        "random": {"user_cpf_cnpj": "[*]", "other": "123"},
     }
+
+
+def test_root_filter(sanitizer_filter, record):
+    record.request = {"cpf_cnpj": {"key": "batata"}}
+    assert sanitizer_filter.filter(record) is True
+    assert record.asctime == "2018-08-30 20:40:57,245"
+    assert record.filename == "_internal.py"
+    assert record.funcName == "_log"
+    assert record.lineno == "88"
+    assert record.levelname == "WARNING"
+    assert record.getMessage() == "farofa"
+    assert record.cpf_cnpj == "[*]"
+    assert record.request == {"cpf_cnpj": "[*]"}
