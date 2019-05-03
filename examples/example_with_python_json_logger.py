@@ -8,33 +8,23 @@ LOG_CONFIG = {
     "formatters": {
         "json": {
             "class": "pythonjsonlogger.jsonlogger.JsonFormatter",
-            "format": "[%(asctime)s] %(levelname)s in %(module)s: %(message)s"
+            "format": "[%(asctime)s] %(levelname)s in %(module)s: %(message)s",
         }
     },
     "filters": {
         "sanitizer": {
             "()": "python_log_sanitizer.SanitizerFilter",
             "patterns": ["extra"],
-            "placeholder": "*"
+            "placeholder": "*",
         }
     },
-    "handlers": {
-        "json": {
-            "class": "logging.StreamHandler",
-            "formatter": "json"
-        }
-    },
+    "handlers": {"json": {"class": "logging.StreamHandler", "formatter": "json"}},
     "loggers": {
-        "root": {
-            "level": "INFO",
-            "handlers": ["json"],
-            "filters": ["sanitizer"]
-        }
-    }
+        "root": {"level": "INFO", "handlers": ["json"], "filters": ["sanitizer"]}
+    },
 }
 config.dictConfig(LOG_CONFIG)  # load log config from dict
 
 logger = logging.getLogger("root")  # get root logger instance
 
-logger.info(
-    "farofa", extra={"extra": "farofa"})  # log message with extra arguments
+logger.info("farofa", extra={"extra": "farofa"})  # log message with extra arguments

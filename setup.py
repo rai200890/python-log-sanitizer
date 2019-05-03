@@ -4,7 +4,7 @@ with open("README.md", "r") as output:
     long_description = output.read()
 
 
-__VERSION__ = "0.0.2"
+__VERSION__ = "0.0.3"
 
 setup(
     name="python_log_sanitizer",
@@ -20,10 +20,13 @@ setup(
     python_requires=">=3.4.*",
     install_requires=[],
     classifiers=[
-        "Environment :: Web Environment", "Intended Audience :: Developers",
+        "Environment :: Web Environment",
+        "Intended Audience :: Developers",
         "License :: OSI Approved :: MIT License",
-        "Natural Language :: English", "Operating System :: OS Independent",
+        "Natural Language :: English",
+        "Operating System :: OS Independent",
         "Programming Language :: Python :: 3 :: Only",
-        "Topic :: System :: Logging"
+        "Topic :: System :: Logging",
     ],
-    zip_safe=False)
+    zip_safe=False,
+)
